@@ -18,7 +18,7 @@
 ## Shells
 
 * [Shells \(Linux, Windows, MSFVenom\)](shells/shells/README.md)
-  * [MSFVenom - CheatSheet](shells/shells/untitled.md)
+  * [MSFVenom - CheatSheet](shells/shells/msfvenom.md)
   * [Shells - Windows](shells/shells/windows.md)
   * [Shells - Linux](shells/shells/linux.md)
   * [Full TTYs](shells/shells/full-ttys.md)
@@ -52,6 +52,17 @@
 * [Useful Linux Commands](linux-unix/useful-linux-commands/README.md)
   * [Bypass Bash Restrictions](linux-unix/useful-linux-commands/bypass-bash-restrictions.md)
 * [Linux Environment Variables](linux-unix/linux-environment-variables.md)
+
+## MacOS
+
+* [MacOS Security & Privilege Escalation](macos/macos-security-and-privilege-escalation/README.md)
+  * [Mac OS Architecture](macos/macos-security-and-privilege-escalation/mac-os-architecture.md)
+  * [MacOS MDM](macos/macos-security-and-privilege-escalation/macos-mdm/README.md)
+    * [Enrolling Devices in Other Organisations](macos/macos-security-and-privilege-escalation/macos-mdm/enrolling-devices-in-other-organisations.md)
+  * [MacOS Protocols](macos/macos-security-and-privilege-escalation/macos-protocols.md)
+  * [MacOS Red Teaming](macos/macos-security-and-privilege-escalation/macos-red-teaming.md)
+  * [MacOS Serial Number](macos/macos-security-and-privilege-escalation/macos-serial-number.md)
+  * [MacOS Apps - Inspecting, debugging and Fuzzing](macos/macos-security-and-privilege-escalation/macos-apps-inspecting-debugging-and-fuzzing.md)
 
 ## Windows
 
@@ -138,6 +149,8 @@
     * [Frida Tutorial 3](mobile-apps-pentesting/android-app-pentesting/frida-tutorial/owaspuncrackable-1.md)
     * [Objection Tutorial](mobile-apps-pentesting/android-app-pentesting/frida-tutorial/objection-tutorial.md)
   * [Google CTF 2018 - Shall We Play a Game?](mobile-apps-pentesting/android-app-pentesting/google-ctf-2018-shall-we-play-a-game.md)
+  * [Inspeckage Tutorial](mobile-apps-pentesting/android-app-pentesting/inspeckage-tutorial.md)
+  * [Intent Injection](mobile-apps-pentesting/android-app-pentesting/intent-injection.md)
   * [Make APK Accept CA Certificate](mobile-apps-pentesting/android-app-pentesting/make-apk-accept-ca-certificate.md)
   * [Manual DeObfuscation](mobile-apps-pentesting/android-app-pentesting/manual-deobfuscation.md)
   * [React Native Application](mobile-apps-pentesting/android-app-pentesting/react-native-application.md)
@@ -210,6 +223,7 @@
 * [69/UDP TFTP/Bittorrent-tracker](pentesting/69-udp-tftp.md)
 * [79 - Pentesting Finger](pentesting/pentesting-finger.md)
 * [80,443 - Pentesting Web Methodology](pentesting/pentesting-web/README.md)
+  * [AEM - Adobe Experience Cloud](pentesting/pentesting-web/aem-adobe-experience-cloud.md)
   * [Apache](pentesting/pentesting-web/apache.md)
   * [Artifactory Hacking guide](pentesting/pentesting-web/artifactory-hacking-guide.md)
   * [Buckets](pentesting/pentesting-web/buckets/README.md)
@@ -553,4 +567,5 @@
 * [1911 - Pentesting fox](1911-pentesting-fox.md)
 * [Online Platforms with API](online-platforms-with-api.md)
 * [Stealing Sensitive Information Disclosure from a Web](stealing-sensitive-information-disclosure-from-a-web.md)
+* [Post Exploitation](post-exploitation.md)
 

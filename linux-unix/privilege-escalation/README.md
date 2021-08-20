@@ -286,21 +286,7 @@ Typically, `/dev/mem` is only readable by **root** and **kmem** group.
 strings /dev/mem -n10 | grep -i PASS
 ```
 
-#### osxpmem
-
-In order to dump the memory in a MacOS machine you can use [**osxpmem**](https://github.com/google/rekall/releases/download/v1.5.1/osxpmem-2.1.post4.zip).
-
-```bash
-sudo osxpmem.app/osxpmem --format raw -o /tmp/dump_mem
-```
-
-If you find this error: `osxpmem.app/MacPmem.kext failed to load - (libkern/kext) authentication failure (file ownership/permissions); check the system/kernel logs for errors or try kextutil(8)` You can fix it doing:
-
-```bash
-sudo cp -r osxpmem.app/MacPmem.kext "/tmp/"
-sudo kextutil "/tmp/MacPmem.kext"
-sudo osxpmem.app/osxpmem --format raw -o /tmp/dump_mem
-```
+#### 
 
 #### Tools
 
@@ -1019,6 +1005,12 @@ There are some alternatives to the `sudo` binary such as `doas` for OpenBSD, rem
 permit nopass demo as root cmd vim
 ```
 
+### Sudo Hijacking
+
+If you know that a **user usually connects to a machine and uses `sudo`** to escalate privileges and you got a shell within that user context, you can **create a new sudo executable** that will execute your code as root and then the users command. Then, **modify the $PATH** of the user context \(for example adding the new path in .bash\_profile\) so we the user executed sudo, your sudo executable is executed.
+
+Note that if the user uses a different shell \(not bash\) you will need to modify other files to add the new path. For example[ sudo-piggyback](https://github.com/APTy/sudo-piggyback) modifies `~/.bashrc`, `~/.zshrc`, `~/.bash_profile`. You can find another example in [bashdoor.py](https://github.com/n00py/pOSt-eX/blob/master/empire_modules/bashdoor.py)
+
 ## Shared Library
 
 ### ld.so
@@ -1077,6 +1069,11 @@ Linux capabilities provide a **subset of the available root privileges to a proc
 Read the following page to **learn more about capabilities and how to abuse them**:
 
 {% page-ref page="linux-capabilities.md" %}
+
+## Directory permissions
+
+In a directory the **bit for execute** implies that the user affected can "**cd**" into the folder.  
+The **read** bit implies the user can **list** the **files**, and the **write** bit implies the user can **delete** and **create** new **files**.
 
 ## ACLs
 
@@ -1355,6 +1352,19 @@ grep -RE 'comm="su"|comm="sudo"' /var/log* 2>/dev/null
 
 In order to **read logs the group** [**adm**](interesting-groups-linux-pe/#adm-group) will be really helpful.
 
+### Shell files
+
+```bash
+~/.bash_profile # if it exists, read once when you log in to the shell
+~/.bash_login # if it exists, read once if .bash_profile doesn't exist
+~/.profile # if it exists, read once if the two above don't exist
+/etc/profile # only read if none of the above exist
+~/.bashrc # if it exists, read every time you start a new shell
+~/.bash_logout # if it exists, read when the login shell exits
+~/.zlogin #zsh shell
+~/.zshrc #zsh shell
+```
+
 ### Generic Creds Search/Regex
 
 You should also check for files containing the word "**password**" in it's **name** or inside the **content**, also check for IPs and emails inside logs, or hashes regexps.  
@@ -1431,6 +1441,11 @@ Files that ships in packages downloaded from distribution repository go into `/u
 
 {% page-ref page="cisco-vmanage.md" %}
 
+### Kernel Security Protections
+
+* [https://github.com/a13xp0p0v/kconfig-hardened-check](https://github.com/a13xp0p0v/kconfig-hardened-check)
+* [https://github.com/a13xp0p0v/linux-kernel-defence-map](https://github.com/a13xp0p0v/linux-kernel-defence-map)
+
 ## More help
 
 [Static impacket binaries](https://github.com/ropnop/impacket_static_binaries)
@@ -1440,6 +1455,7 @@ Files that ships in packages downloaded from distribution repository go into `/u
 #### **Best tool to look for Linux local privilege escalation vectors:** [**LinPEAS**](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS)
 
 **LinEnum**: [https://github.com/rebootuser/LinEnum](https://github.com/rebootuser/LinEnum)\(-t option\)  
+**Enumy**: [https://github.com/luke-goddard/enumy](https://github.com/luke-goddard/enumy)  
 **Unix Privesc Check:** [http://pentestmonkey.net/tools/audit/unix-privesc-check](http://pentestmonkey.net/tools/audit/unix-privesc-check)  
 **Linux Priv Checker:** [www.securitysift.com/download/linuxprivchecker.py](http://www.securitysift.com/download/linuxprivchecker.py)  
 **BeeRoot:** [https://github.com/AlessandroZ/BeRoot/tree/master/Linux](https://github.com/AlessandroZ/BeRoot/tree/master/Linux)  
