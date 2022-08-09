@@ -6,54 +6,116 @@ description: >-
 
 # HackTricks
 
-![](.gitbook/assets/portada-alcoholica.png)
+<details>
+
+<summary><strong>Support HackTricks and get benefits!</strong></summary>
+
+Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+
+Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+
+Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+
+**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+
+**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+
+</details>
+
+![](.gitbook/assets/p.png)
 
 **Welcome to the page where you will find each hacking trick/technique/whatever I have learnt in CTFs, real life apps, and reading researches and news.**
 
 Here you can find a little **introduction:**
 
-## [**Pentesting Methodology**](pentesting-methodology.md)
-
-## [**Pentesting Methodology**](pentesting-methodology.md)
+## [**Pentesting Methodology**](generic-methodologies-and-resources/pentesting-methodology.md)
 
 Here you will find the **typical flow** that **you should follow when pentesting** one or more **machines**.
 
 **Click in the title to start!**
 
-If you want to **know** about my **latest modifications**/**additions** or you have **any suggestion for HackTricks or PEASS**, **join the** [**💬**](https://emojipedia.org/speech-balloon/) ****[**PEASS & HackTricks telegram group here**](https://t.me/peass), or **follow me on Twitter** [🐦](https://emojipedia.org/bird/)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**  
-If you want to **share some tricks with the community** you can also submit **pull requests** to [**https://github.com/carlospolop/hacktricks**](https://github.com/carlospolop/hacktricks**]%28https://github.com/carlospolop/hacktricks) **that will be reflected in this book.  
-Don't forget to** give ⭐ on the github\*\* to motivate me to continue developing this book.
+## Support HackTricks
 
-{% hint style="danger" %}
-Do you use **Hacktricks every day**? Did you find the book **very** **useful**? Would you like to **receive extra help** with cybersecurity questions? Would you like to **find more and higher quality content on Hacktricks**?  
-[**Support Hacktricks through github sponsors**](https://github.com/sponsors/carlospolop) **so we can dedicate more time to it and also get access to the Hacktricks private group where you will get the help you need and much more!**
-{% endhint %}
+Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
 
-If you want to know about my **latest modifications**/**additions** or you have **any suggestion for HackTricks** or **PEASS**, **join the** [**💬**](https://emojipedia.org/speech-balloon/)[**telegram group**](https://t.me/peass), or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**  
+LinPEAS, WinPEAS and MacPEAS aren’t enough for you? **Welcome** [**The PEASS Family**](https://opensea.io/collection/the-peass-family), a limited collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family) of our favourite PEASS in disguise, designed by my team. **Go get your favourite and make it yours!** (access to the latest PEASS-ng is also granted buying NFTs)\
+And if you are a PEASS & HackTricks enthusiast, you can get your hands now on our [**custom swag**](https://peass.creator-spring.com) **and show how much you like our projects!**
+
+You can also, **join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) **to learn about latest news in cybersecurity and meet other cybersecurity enthusiasts**, or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**\
 If you want to **share some tricks with the community** you can also submit **pull requests** to [**https://github.com/carlospolop/hacktricks**](https://github.com/carlospolop/hacktricks) that will be reflected in this book and don't forget to **give ⭐** on **github** to **motivate** **me** to continue developing this book.
 
 ## Corporate Sponsors
 
-### \*\*\*\*[**INE**](https://ine.com/)\*\*\*\*
+### [STM Cyber](https://www.stmcyber.com)
 
-![](.gitbook/assets/ine_logo-3-.jpg)
+![](<.gitbook/assets/image (642) (1) (1) (1).png>)
 
-[**Buy me a coffee here**](https://www.buymeacoffee.com/carlospolop)
+[**STM Cyber**](https://www.stmcyber.com) is a great cybersecurity company whose slogan is **HACK THE UNHACKABLE**. They perform their own research and develop their own hacking tools to **offer several valuable cybersecurity services** like pentestings, Red teams and training.
 
-\*\*\*\*[**INE**](https://ine.com/) is a great platform to start learning or **improve** your **IT knowledge** through their huge range of **courses**. I personally like and have completed many from the [**cybersecurity section**](https://ine.com/pages/cybersecurity). **INE** also provides with the official courses to prepare the **certifications** from [**eLearnSecurity**](https://elearnsecurity.com/)**.**
+You can check their **blog** in [**https://blog.stmcyber.com**](https://blog.stmcyber.com)
 
-  
-Copyright © Carlos Polop 2020. Except where otherwise specified, the text on [HACK TRICKS](https://github.com/carlospolop/hacktricks) by Carlos Polop is licensed under the [**Commons Clause**](https://commonsclause.com/) \(which allow you to use this content freely WITHOUT commercial use\).
+**STM Cyber** also support cybersecurity open source projects like HackTricks :)
 
-#### **Courses and Certifications reviews**
+### [Security Hubs](https://securityhubs.io/)
 
-You can find **my reviews of the certifications eMAPT and eWPTXv2** \(and their **respective preparation courses**\) in the following page:
+![](<.gitbook/assets/image (307).png>)
 
-{% page-ref page="courses-and-certifications-reviews/ine-courses-and-elearnsecurity-certifications-reviews.md" %}
+Through Security Skills as a Service, we help organizations to **defend against the Dark Hacking Arts**. Security Skills as a Service is an offensive cybersecurity consultancy model that combines an Intelligent Platform with the top-class, globally distributed, offensive security engineers, delivering **high-quality penetration testing results.** [**Security Hubs**](https://securityhubs.io/) **** bring together offensive penetration testing tactics with human behavioral science, providing real-time insights into threat actors' tradecraft and a **complete assessment of any risks**.
 
+{% embed url="https://securityhubs.io/" %}
 
+### [SecurityBoat](https://securityboat.in/)
 
-\*\*\*\*
+![](<.gitbook/assets/SB logo black\_034525.png>)
 
-**Copyright © Carlos Polop 2021. Except where otherwise specified, the rights of the text on** [**HACKTRICKS**](https://github.com/carlospolop/hacktricks) **by Carlos Polop are reserved.**
+**Securityboat** is a cybersecurity company focused on providing top of the line **penetration testing services** and the most comprehensive **automated security testing** solutions based on an extensive **manual security testing methodology** that utilizes various case-specific and **industry-tested** solutions. They are committed to providing clear communication on cybersecurity issues, developing solutions, and prioritizing **business risk**.\
+**Make the right choice by contacting us for your security:**
 
+{% embed url="https://securityboat.in/contact-us" %}
+
+### [Intigriti](https://www.intigriti.com)
+
+![](.gitbook/assets/i3.png)
+
+**Intigriti** is the **Europe's #1** ethical hacking and **bug bounty platform.**
+
+**Bug bounty tip**: **sign up** for **Intigriti**, a premium **bug bounty platform created by hackers, for hackers**! Join us at [**https://go.intigriti.com/hacktricks**](https://go.intigriti.com/hacktricks) today, and start earning bounties up to **$100,000**!
+
+{% embed url="https://go.intigriti.com/hacktricks" %}
+
+### [**INE**](https://ine.com)
+
+![](.gitbook/assets/ine\_logo-3-.jpg)
+
+[**INE**](https://ine.com) is a great platform to start learning or **improve** your **IT knowledge** through their huge range of **courses**. I personally like and have completed many from the [**cybersecurity section**](https://ine.com/pages/cybersecurity). **INE** also provides with the official courses to prepare the **certifications** from [**eLearnSecurity**](https://elearnsecurity.com)**.**
+
+**INE** also support cybersecurity open source projects like HackTricks :)
+
+**Courses and Certifications reviews**
+
+You can find **my reviews of the certifications eMAPT and eWPTXv2** (and their **respective preparation courses**) in the following page:
+
+{% content-ref url="courses-and-certifications-reviews/ine-courses-and-elearnsecurity-certifications-reviews.md" %}
+[ine-courses-and-elearnsecurity-certifications-reviews.md](courses-and-certifications-reviews/ine-courses-and-elearnsecurity-certifications-reviews.md)
+{% endcontent-ref %}
+
+## License
+
+**Copyright © Carlos Polop 2021. Except where otherwise specified (the external information copied into the book belongs to the original authors), the text on** [**HACK TRICKS**](https://github.com/carlospolop/hacktricks) **by Carlos Polop is licensed under the**[ **Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**](https://creativecommons.org/licenses/by-nc/4.0/)**.**\
+**If you want to use it with commercial purposes, contact me.**
+
+<details>
+
+<summary><strong>Support HackTricks and get benefits!</strong></summary>
+
+Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+
+Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+
+Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+
+**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+
+**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+
+</details>

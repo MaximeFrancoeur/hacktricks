@@ -1,53 +1,75 @@
 # Windows Artifacts
 
+## Windows Artifacts
+
+<details>
+
+<summary><strong>Support HackTricks and get benefits!</strong></summary>
+
+Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+
+Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+
+Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+
+**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+
+**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+
+</details>
+
 ## Generic Windows Artifacts
 
 ### Windows 10 Notifications
 
-In the path `\Users\<username>\AppData\Local\Microsoft\Windows\Notifications` you can find the database `appdb.dat` \(before Windows anniversary\) or `wpndatabase.db` \(after Windows Anniversary\).
+In the path `\Users\<username>\AppData\Local\Microsoft\Windows\Notifications` you can find the database `appdb.dat` (before Windows anniversary) or `wpndatabase.db` (after Windows Anniversary).
 
-Inside this SQLite database you can find the `Notification` table with all the notifications \(in xml format\) that may contain interesting data.
+Inside this SQLite database you can find the `Notification` table with all the notifications (in xml format) that may contain interesting data.
 
 ### Timeline
 
-Timeline is a Windows characteristic that provides **chronological history** of web pages visited, edited documents, executed applications...  
-The database resides in the path `\Users\<username>\AppData\Local\ConnectedDevicesPlatform\<id>\ActivitiesCache.db`  
+Timeline is a Windows characteristic that provides **chronological history** of web pages visited, edited documents, executed applications...\
+The database resides in the path `\Users\<username>\AppData\Local\ConnectedDevicesPlatform\<id>\ActivitiesCache.db`\
 This database can be open with a SQLite tool or with the tool [**WxTCmd**](https://github.com/EricZimmerman/WxTCmd) **which generates 2 files that can be opened with the tool** [**TimeLine Explorer**](https://ericzimmerman.github.io/#!index.md).
+
+### ADS/Alternate Data Streams
+
+Files downloaded may contain the **ADS Zone.Identifier** indicating **how** was **downloaded** (from the intranet, Internet...) and some software (like browser) usually put even **more** **information** like the **URL** from where the file was downloaded.
 
 ## **File Backups**
 
 ### Recycle Bin
 
-In Vista/Win7/Win8/Win10 the **Reciclye Bin** can be found in the folder **`$Recycle.bin`** in the root of the drive \(`C:\$Reciycle.bin`\).  
+In Vista/Win7/Win8/Win10 the **Reciclye Bin** can be found in the folder **`$Recycle.bin`** in the root of the drive (`C:\$Reciycle.bin`).\
 When a file is deleted in this folder are created 2 files:
 
-* `$I{id}`: File information \(date of when it was deleted}
+* `$I{id}`: File information (date of when it was deleted}
 * `$R{id}`: Content of the file
 
-![](../../../.gitbook/assets/image%20%28492%29.png)
+![](<../../../.gitbook/assets/image (486).png>)
 
-Having these files you can sue the tool [**Rifiuti**](https://github.com/abelcheung/rifiuti2) to get the original address of the deleted files and the date it was deleted \(use `rifiuti-vista.exe` for Vista – Win10\).
+Having these files you can sue the tool [**Rifiuti**](https://github.com/abelcheung/rifiuti2) to get the original address of the deleted files and the date it was deleted (use `rifiuti-vista.exe` for Vista – Win10).
 
-```text
+```
 .\rifiuti-vista.exe C:\Users\student\Desktop\Recycle
 ```
 
-![](../../../.gitbook/assets/image%20%28495%29%20%281%29%20%281%29.png)
+![](<../../../.gitbook/assets/image (495) (1) (1) (1).png>)
 
 ### Volume Shadow Copies
 
-Shadow Copy is a technology included in Microsoft Windows that can create **backup copies** or snapshots of computer files or volumes, even when they are in use.  
+Shadow Copy is a technology included in Microsoft Windows that can create **backup copies** or snapshots of computer files or volumes, even when they are in use.\
 These backups are usually located in the `\System Volume Information` from the roof of the file system and the name is composed by **UIDs** as in the following image:
 
-![](../../../.gitbook/assets/image%20%28522%29.png)
+![](<../../../.gitbook/assets/image (520).png>)
 
-Mounting the forensics image with the **ArsenalImageMounter**, the tool [**ShadowCopyView**](https://www.nirsoft.net/utils/shadow_copy_view.html) can be used to inspect a shadow copy and even **extract the files** from the shadow copy backups.
+Mounting the forensics image with the **ArsenalImageMounter**, the tool [**ShadowCopyView**](https://www.nirsoft.net/utils/shadow\_copy\_view.html) can be used to inspect a shadow copy and even **extract the files** from the shadow copy backups.
 
-![](../../../.gitbook/assets/image%20%28525%29.png)
+![](<../../../.gitbook/assets/image (521).png>)
 
 The registry entry `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\BackupRestore` contains the files and keys **to not backup**:
 
-![](../../../.gitbook/assets/image%20%28523%29.png)
+![](<../../../.gitbook/assets/image (522).png>)
 
 The registry `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VSS` also contains configuration information about the `Volume Shadow Copies`.
 
@@ -59,7 +81,7 @@ You can find the office autosaved files in : `C:\Usuarios\\AppData\Roaming\Micro
 
 A shell item is an item that contains information about how to access another file.
 
-### Recent Documents \(LNK\)
+### Recent Documents (LNK)
 
 Windows **automatically** **creates** these **shortcuts** when the user **open, uses or creates a file** in:
 
@@ -68,7 +90,7 @@ Windows **automatically** **creates** these **shortcuts** when the user **open, 
 
 When a folder is created, a link to the folder, to the parent folder and to the grandparent folder is also created.
 
-These automatically created link files **contain information about the origin** like if it's a **file** **or** a **folder**, **MAC** **times** of that file, **volume informatio**n of where is the file stored and **folder of the target file**.  
+These automatically created link files **contain information about the origin** like if it's a **file** **or** a **folder**, **MAC** **times** of that file, **volume informatio**n of where is the file stored and **folder of the target file**.\
 This information can be useful to recover those files in case they were removed.
 
 Also, the **date created of the link** file is the first **time** the original file was **first** **used** and the **date** **modified** of the link file is the **last** **time** the origin file was used.
@@ -77,9 +99,9 @@ To inspect these files you can use [**LinkParser**](http://4discovery.com/our-to
 
 In this tools you will find 2 set of timestamps: **FileModifiedDate**, **FileAccessDate** and **FileCreationDate**, and **LinkModifiedDate**, **LinkAccessDate** and **LinkCreationDate**. The first set of timestamp references the **timestamps of the link file itself**. The second set references the **timestamps of the linked file**.
 
-You can get the same information running the Windows cli tool: [**LECmd.exe**](https://github.com/EricZimmerman/LECmd)\*\*\*\*
+You can get the same information running the Windows cli tool: [**LECmd.exe**](https://github.com/EricZimmerman/LECmd)
 
-```text
+```
 LECmd.exe -d C:\Users\student\Desktop\LNKs --csv C:\Users\student\Desktop\LNKs
 ```
 
@@ -91,18 +113,18 @@ These are the recent files that are indicated per application. It's the list of 
 
 They can be created **automatically or be custom**.
 
-The **jumplists** created automatically are stored in `C:\Users\{username}\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations\`.  
+The **jumplists** created automatically are stored in `C:\Users\{username}\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations\`.\
 The jumplists are named following the format `{id}.autmaticDestinations-ms` where the initial ID is the ID of the application.
 
-The custom jumplists are stored in `C:\Users\{username}\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination\` and they are created by the application usually because something **important** has happened with the file \(maybe marked as favorite\)
+The custom jumplists are stored in `C:\Users\{username}\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination\` and they are created by the application usually because something **important** has happened with the file (maybe marked as favorite)
 
 The **created time** of any jumplist indicates the **first time the file was accessed** and the **modified time the last time**.
 
 You can inspect the jumplists using [**JumplistExplorer**](https://ericzimmerman.github.io/#!index.md).
 
-![](../../../.gitbook/assets/image%20%28478%29.png)
+![](<../../../.gitbook/assets/image (474).png>)
 
-\(_Note that the timestamps provided by JumplistExplorer are related to the jumplist file itself_\)
+(_Note that the timestamps provided by JumplistExplorer are related to the jumplist file itself_)
 
 ### Shellbags
 
@@ -118,7 +140,7 @@ It's possible to identify that a USB device was used thanks to the creation of:
 
 Note that some LNK file instead of pointing to the original path, points to the WPDNSE folder:
 
-![](../../../.gitbook/assets/image%20%28487%29.png)
+![](<../../../.gitbook/assets/image (476).png>)
 
 The files in the folder WPDNSE are a copy of the original ones, then won't survive a restart of the PC and the GUID is taken from a shellbag.
 
@@ -128,36 +150,36 @@ The files in the folder WPDNSE are a copy of the original ones, then won't survi
 
 ### setupapi
 
-Check the file `C:\Windows\inf\setupapi.dev.log` to get the timestamps about when the USB connection was produced \(search for `Section start`\).
+Check the file `C:\Windows\inf\setupapi.dev.log` to get the timestamps about when the USB connection was produced (search for `Section start`).
 
-![](../../../.gitbook/assets/image%20%28477%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%283%29%20%281%29.png)
+![](<../../../.gitbook/assets/image (477) (2) (2) (2) (2) (2) (2) (2) (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (10).png>)
 
 ### USB Detective
 
-[**USBDetective**](https://usbdetective.com/) can be used to obtain information about the USB devices that have been connected to an image.
+[**USBDetective**](https://usbdetective.com) can be used to obtain information about the USB devices that have been connected to an image.
 
-![](../../../.gitbook/assets/image%20%28480%29.png)
+![](<../../../.gitbook/assets/image (483).png>)
 
 ### Plug and Play Cleanup
 
-The 'Plug and Play Cleanup' scheduled task is responsible for **clearing** legacy versions of drivers. It would appear \(based upon reports online\) that it also picks up **drivers which have not been used in 30 days**, despite its description stating that "the most current version of each driver package will be kept". As such, **removable devices which have not been connected for 30 days may have their drivers removed**.  
+The 'Plug and Play Cleanup' scheduled task is responsible for **clearing** legacy versions of drivers. It would appear (based upon reports online) that it also picks up **drivers which have not been used in 30 days**, despite its description stating that "the most current version of each driver package will be kept". As such, **removable devices which have not been connected for 30 days may have their drivers removed**.\
 The scheduled task itself is located at ‘C:\Windows\System32\Tasks\Microsoft\Windows\Plug and Play\Plug and Play Cleanup’, and its content is displayed below:
 
-![](https://2.bp.blogspot.com/-wqYubtuR_W8/W19bV5S9XyI/AAAAAAAANhU/OHsBDEvjqmg9ayzdNwJ4y2DKZnhCdwSMgCLcBGAs/s1600/xml.png)
+![](https://2.bp.blogspot.com/-wqYubtuR\_W8/W19bV5S9XyI/AAAAAAAANhU/OHsBDEvjqmg9ayzdNwJ4y2DKZnhCdwSMgCLcBGAs/s1600/xml.png)
 
-The task references 'pnpclean.dll' which is responsible for performing the cleanup activity additionally we see that the ‘UseUnifiedSchedulingEngine’ field is set to ‘TRUE’ which specifies that the generic task scheduling engine is used to manage the task. The ‘Period’ and ‘Deadline’ values of 'P1M' and 'P2M' within ‘MaintenanceSettings’ instruct Task Scheduler to execute the task once every month during regular Automatic maintenance and if it fails for 2 consecutive months, to start attempting the task during.  
+The task references 'pnpclean.dll' which is responsible for performing the cleanup activity additionally we see that the ‘UseUnifiedSchedulingEngine’ field is set to ‘TRUE’ which specifies that the generic task scheduling engine is used to manage the task. The ‘Period’ and ‘Deadline’ values of 'P1M' and 'P2M' within ‘MaintenanceSettings’ instruct Task Scheduler to execute the task once every month during regular Automatic maintenance and if it fails for 2 consecutive months, to start attempting the task during.\
 **This section was copied from** [**here**](https://blog.1234n6.com/2018/07/windows-plug-and-play-cleanup.html)**.**
 
 ## Emails
 
 The emails contains **2 interesting parts: The headers and the content** of the email. In the **headers** you can find information like:
 
-* **Who** send the emails \(email address, IP, mail servers that has redirected the email\)
+* **Who** send the emails (email address, IP, mail servers that has redirected the email)
 * **When** was the email sent
 
 Also, inside the `References` and `In-Reply-To` headers you can find the ID of the messages:
 
-![](../../../.gitbook/assets/image%20%28491%29.png)
+![](<../../../.gitbook/assets/image (484).png>)
 
 ### Windows Mail App
 
@@ -165,7 +187,7 @@ This application saves the emails in HTML or text. You can find the emails insid
 
 The **metadata** of the emails and the **contacts** can be found inside the **EDB database**: `\Users\<username>\AppData\Local\Comms\UnistoreDB\store.vol`
 
-**Change the extension** of the file from `.vol` to `.edb` and you can use the tool [ESEDatabaseView](https://www.nirsoft.net/utils/ese_database_view.html) to open it. Inside the `Message` table you can see the emails.
+**Change the extension** of the file from `.vol` to `.edb` and you can use the tool [ESEDatabaseView](https://www.nirsoft.net/utils/ese\_database\_view.html) to open it. Inside the `Message` table you can see the emails.
 
 ### Microsoft Outlook
 
@@ -174,18 +196,18 @@ When Exchange servers or Outlook clients are used there are going to be some MAP
 * `Mapi-Client-Submit-Time`: Time of the system when the email was sent
 * `Mapi-Conversation-Index`: Number of children message of the thread and timestamp of each message of the thread
 * `Mapi-Entry-ID`: Message identifier.
-* `Mappi-Message-Flags` and `Pr_last_Verb-Executed`: Information about the MAPI client \(message read? no read? responded? redirected? out of the office?\)
+* `Mappi-Message-Flags` and `Pr_last_Verb-Executed`: Information about the MAPI client (message read? no read? responded? redirected? out of the office?)
 
 In the Microsoft Outlook client all the sent and received messages, contacts and calendar data is stored in a PST file in:
 
-* `%USERPROFILE%\Local Settings\Application Data\Microsoft\Outlook` \(WinXP\)
+* `%USERPROFILE%\Local Settings\Application Data\Microsoft\Outlook` (WinXP)
 * `%USERPROFILE%\AppData\Local\Microsoft\Outlook`
 
 The registry path `HKEY_CURRENT_USER\Software\Microsoft\WindowsNT\CurrentVersion\Windows Messagin Subsystem\Profiles\Outlook` indicates the file that is being used.
 
 You can open the PST file using the tool [**Kernel PST Viewer**](https://www.nucleustechnologies.com/es/visor-de-pst.html).
 
-![](../../../.gitbook/assets/image%20%28494%29.png)
+![](<../../../.gitbook/assets/image (485).png>)
 
 ### Outlook OST
 
@@ -197,8 +219,8 @@ You can inspect this file using [**Kernel OST viewer**](https://www.nucleustechn
 
 You may be able to find them in the folder:
 
-* `%APPDATA%\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook` -&gt; IE10
-* `%APPDATA%\Local\Microsoft\InetCache\Content.Outlook` -&gt; IE11+
+* `%APPDATA%\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook` -> IE10
+* `%APPDATA%\Local\Microsoft\InetCache\Content.Outlook` -> IE11+
 
 ### Thunderbird MBOX
 
@@ -206,21 +228,21 @@ You may be able to find them in the folder:
 
 ## Thumbnails
 
-When a user access a folder and organised it using thumbnails, then a `thumbs.db` file is created. This db **stores the thumbnails of the images** of the folder even if they are deleted.  
-in winXP and WIn8-8.1 this file is created automatically. In Win7/Win10, it's created automatically if it's accessed via an UNC path \(\IP\folder...\).
+When a user access a folder and organised it using thumbnails, then a `thumbs.db` file is created. This db **stores the thumbnails of the images** of the folder even if they are deleted.\
+in winXP and WIn8-8.1 this file is created automatically. In Win7/Win10, it's created automatically if it's accessed via an UNC path (\IP\folder...).
 
-It is possible to read this file with the tool [**Thumbsviewer**](https://thumbsviewer.github.io/).
+It is possible to read this file with the tool [**Thumbsviewer**](https://thumbsviewer.github.io).
 
 ### Thumbcache
 
-Beginning with Windows Vista, **thumbnail previews are stored in a centralized location on the system**. This provides the system with access to images independent of their location, and addresses issues with the locality of Thumbs.db files. The cache is stored at **`%userprofile%\AppData\Local\Microsoft\Windows\Explorer`** as a number of files with the label **thumbcache\_xxx.db** \(numbered by size\); as well as an index used to find thumbnails in each sized database.
+Beginning with Windows Vista, **thumbnail previews are stored in a centralized location on the system**. This provides the system with access to images independent of their location, and addresses issues with the locality of Thumbs.db files. The cache is stored at **`%userprofile%\AppData\Local\Microsoft\Windows\Explorer`** as a number of files with the label **thumbcache\_xxx.db** (numbered by size); as well as an index used to find thumbnails in each sized database.
 
-* Thumbcache\_32.db -&gt; small
-* Thumbcache\_96.db -&gt; medium
-* Thumbcache\_256.db -&gt; large
-* Thumbcache\_1024.db -&gt; extra large
+* Thumbcache\_32.db -> small
+* Thumbcache\_96.db -> medium
+* Thumbcache\_256.db -> large
+* Thumbcache\_1024.db -> extra large
 
-You can read this file using [**ThumbCache Viewer**](https://thumbcacheviewer.github.io/).
+You can read this file using [**ThumbCache Viewer**](https://thumbcacheviewer.github.io).
 
 ## Windows Registry
 
@@ -228,14 +250,14 @@ The Windows Registry Contains a lot of **information** about the **system and th
 
 The files containing the registry are located in:
 
-* %windir%\System32\Config\*_SAM\*_:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\*_SECURITY\*_:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\*_SYSTEM\*_:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\*_SOFTWARE\*_:  `HKEY_LOCAL_MACHINE`
-* %windir%\System32\Config\*_DEFAULT\*_:  `HKEY_LOCAL_MACHINE`
-* %UserProfile%{User}\*_NTUSER.DAT\*_:  `HKEY_CURRENT_USER`
+* %windir%\System32\Config\*_SAM\*_: `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SECURITY\*_: `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SYSTEM\*_: `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_SOFTWARE\*_: `HKEY_LOCAL_MACHINE`
+* %windir%\System32\Config\*_DEFAULT\*_: `HKEY_LOCAL_MACHINE`
+* %UserProfile%{User}\*_NTUSER.DAT\*_: `HKEY_CURRENT_USER`
 
-From Windows Vista and Windows 2008 Server upwards there are some backups of the `HKEY_LOCAL_MACHINE` registry files in **`%Windir%\System32\Config\RegBack\`**.  
+From Windows Vista and Windows 2008 Server upwards there are some backups of the `HKEY_LOCAL_MACHINE` registry files in **`%Windir%\System32\Config\RegBack\`**.\
 Also from these versions, the registry file **`%UserProfile%\{User}\AppData\Local\Microsoft\Windows\USERCLASS.DAT`** is created saving information about program executions.
 
 ### Tools
@@ -257,14 +279,24 @@ Each Key-Value contains a **timestamp** indicating the last time it was modified
 
 ### SAM
 
-The file/hive **SAM** contains the **users, groups and users passwords** hashes of the system.  
+The file/hive **SAM** contains the **users, groups and users passwords** hashes of the system.\
 In `SAM\Domains\Account\Users` you can obtain the username, the RID, last logon, last failed logon, login counter, password policy and when the account was created. In order to get the **hashes** you also **need** the file/hive **SYSTEM**.
 
 ### Interesting entries in the Windows Registry
 
-{% page-ref page="interesting-windows-registry-keys.md" %}
+{% content-ref url="interesting-windows-registry-keys.md" %}
+[interesting-windows-registry-keys.md](interesting-windows-registry-keys.md)
+{% endcontent-ref %}
 
 ## Programs Executed
+
+### Basic Windows Processes
+
+in the following page you can learn about the basic Windows processes to detect suspicious behaviours:
+
+{% content-ref url="windows-processes.md" %}
+[windows-processes.md](windows-processes.md)
+{% endcontent-ref %}
 
 ### Windows RecentAPPs
 
@@ -272,16 +304,16 @@ Inside the registry `NTUSER.DAT` in the path `Software\Microsoft\Current Version
 
 ### BAM
 
-You can open the `SYSTEM` file with a registry editor and inside the path `SYSTEM\CurrentControlSet\Services\bam\UserSettings\{SID}` you can find the information about the **applications executed by each user** \(note the `{SID}` in the path\) and at **what time** they were executed \(the time is inside the Data value of the registry\).
+You can open the `SYSTEM` file with a registry editor and inside the path `SYSTEM\CurrentControlSet\Services\bam\UserSettings\{SID}` you can find the information about the **applications executed by each user** (note the `{SID}` in the path) and at **what time** they were executed (the time is inside the Data value of the registry).
 
 ### Windows Prefetch
 
 Prefetching is a technique that allows a computer to silently **fetch the necessary resources needed to display content** that a user **might access in the near future** so resources can be accessed in less time.
 
-Windows prefetch consist on creating **caches of the executed programs** in order to be able to load them faster. These caches as created as `.pf` files inside the path: `C:\Windows\Prefetch`.  
+Windows prefetch consist on creating **caches of the executed programs** in order to be able to load them faster. These caches as created as `.pf` files inside the path: `C:\Windows\Prefetch`.\
 there is a limit of 128 files in XP/VISTA/WIN7 and 1024 files in Win8/Win10.
 
-The file name is created as `{program_name}-{hash}.pf` \(the hash is based on the path and arguments of the executable\). In W10 these files are compressed.  
+The file name is created as `{program_name}-{hash}.pf` (the hash is based on the path and arguments of the executable). In W10 these files are compressed.\
 Note that the sole presence of the file indicates that **the program was executed** at some point.
 
 The file `C:\Windows\Prefetch\Layout.ini` contains the **names of the folders of the files that are prefetched**. This file contains **information about the number of the executions**, **dates** of the execution and **files** **open** by the program.
@@ -292,11 +324,11 @@ To inspect these files you can use the tool [**PEcmd.exe**](https://github.com/E
 .\PECmd.exe -d C:\Users\student\Desktop\Prefetch --html "C:\Users\student\Desktop\out_folder"
 ```
 
-![](../../../.gitbook/assets/image%20%28496%29.png)
+![](<../../../.gitbook/assets/image (487).png>)
 
 ### Superprefetch
 
-**Superprefetch** has the same goal as prefetch, **load programs faster** by predicting what is going to be loaded next. However, it doesn't substitute the prefetch service.  
+**Superprefetch** has the same goal as prefetch, **load programs faster** by predicting what is going to be loaded next. However, it doesn't substitute the prefetch service.\
 This service will generate database files in `C:\Windows\Prefetch\Ag*.db`.
 
 In these databases you can find the **name** of the **program**, **number** of **executions**, **files** **opened**, **volume** **accessed**, **complete** **path**, **timeframes** and **timestamps**.
@@ -305,7 +337,7 @@ You can access this information using the tool [**CrowdResponse**](https://www.c
 
 ### SRUM
 
-**System Resource Usage Monitor** \(SRUM\) **monitors** the **resources** **consumed** **by a process**. It appeared in W8 and it stores the data en an ESE database located in `C:\Windows\System32\sru\SRUDB.dat`.
+**System Resource Usage Monitor** (SRUM) **monitors** the **resources** **consumed** **by a process**. It appeared in W8 and it stores the data en an ESE database located in `C:\Windows\System32\sru\SRUDB.dat`.
 
 It gives the information:
 
@@ -325,7 +357,7 @@ You can obtain the date from this file using the tool [**srum\_dump**](https://g
 .\srum_dump.exe -i C:\Users\student\Desktop\SRUDB.dat -t SRUM_TEMPLATE.xlsx -o C:\Users\student\Desktop\srum
 ```
 
-### AppCompatCache \(ShimCache\)
+### AppCompatCache (ShimCache)
 
 **Shimcache**, also known as **AppCompatCache**, is a component of the **Application Compatibility Database**, which was created by **Microsoft** and used by the operating system to identify application compatibility issues.
 
@@ -333,21 +365,21 @@ The cache stores various file metadata depending on the operating system, such a
 
 * File Full Path
 * File Size
-* **$Standard\_Information** \(SI\) Last Modified time
+* **$Standard\_Information** (SI) Last Modified time
 * Shimcache Last Updated time
 * Process Execution Flag
 
 This information can be found in the registry in:
 
-* `SYSTEM\CurrentControlSet\Control\SessionManager\Appcompatibility\AppcompatCache` 
-  * XP \(96 entries\)
+* `SYSTEM\CurrentControlSet\Control\SessionManager\Appcompatibility\AppcompatCache`
+  * XP (96 entries)
 * `SYSTEM\CurrentControlSet\Control\SessionManager\AppcompatCache\AppCompatCache`
-  * Server 2003 \(512 entries\)
-  * 2008/2012/2016 Win7/Win8/Win10 \(1024 entries\)
+  * Server 2003 (512 entries)
+  * 2008/2012/2016 Win7/Win8/Win10 (1024 entries)
 
 You can use the tool [**AppCompatCacheParser**](https://github.com/EricZimmerman/AppCompatCacheParser) to parse this information.
 
-![](../../../.gitbook/assets/image%20%28497%29.png)
+![](<../../../.gitbook/assets/image (488).png>)
 
 ### Amcache
 
@@ -379,12 +411,12 @@ You can find them in the registry under `SYSTEM\ControlSet001\Services`. You can
 
 ### **Windows Store**
 
-The installed applications can be found in `\ProgramData\Microsoft\Windows\AppRepository\`  
+The installed applications can be found in `\ProgramData\Microsoft\Windows\AppRepository\`\
 This repository has a **log** with **each application installed** in the system inside the database **`StateRepository-Machine.srd`**.
 
 Inside the Application table of this database it's possible to find the columns: "Application ID", "PackageNumber", and "Display Name". This columns have information about pre-installed and installed applications and it can be found if some applications were uninstalled because the IDs of installed applications should be sequential.
 
-It's also possible to **find installed application** inside the registry path: `Software\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Applications\`  
+It's also possible to **find installed application** inside the registry path: `Software\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Applications\`\
 And **uninstalled** **applications** in: `Software\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Deleted\`
 
 ## Windows Events
@@ -392,10 +424,10 @@ And **uninstalled** **applications** in: `Software\Microsoft\Windows\CurrentVers
 Information that appears inside Windows events:
 
 * What happened
-* Timestamp \(UTC + 0\)
+* Timestamp (UTC + 0)
 * Users involved
-* Hosts involved \(hostname, IP\)
-* Assets accessed \(files, folder, printer, services\)
+* Hosts involved (hostname, IP)
+* Assets accessed (files, folder, printer, services)
 
 The logs are located in `C:\Windows\System32\config` before Windows Vista and in `C:\Windows\System32\winevt\Logs` after Windows Vista.
 
@@ -403,11 +435,11 @@ Before Windows Vista the event logs were in binary format and after it, they are
 
 The location of the event files can be found in the SYSTEM registry in **`HKLM\SYSTEM\CurrentControlSet\services\EventLog\{Application|System|Security}`**
 
-They can be visualized from the Windows Event Viewer \(**`eventvwr.msc`**\) or with other tools like [**Event Log Explorer**](https://eventlogxp.com/)**.**
+They can be visualized from the Windows Event Viewer (**`eventvwr.msc`**) or with other tools like [**Event Log Explorer**](https://eventlogxp.com) **or** [**Evtx Explorer/EvtxECmd**](https://ericzimmerman.github.io/#!index.md)**.**
 
 ### Security
 
-These event register the accesses and give information about the security configuration.  
+These event register the accesses and give information about the security configuration.\
 they can be found in `C:\Windows\System32\winevt\Security.evtx`.
 
 The **max size** of the event file is configurable, and it will start overwriting old events when the maximum size is reached.
@@ -421,28 +453,33 @@ Events that are registered:
 
 Events related to the user authentication:
 
-| EventID | Description |
-| :--- | :--- |
-| 4624 | Successful authentication |
-| 4625 | Authentication error |
-| 4634/4647 | log off |
-| 4672 | Logon with admin permissions |
+| EventID   | Description                  |
+| --------- | ---------------------------- |
+| 4624      | Successful authentication    |
+| 4625      | Authentication error         |
+| 4634/4647 | log off                      |
+| 4672      | Logon with admin permissions |
 
 Inside the EventID 4634/4647 there are interesting sub-types:
 
-* **2 \(interactive\)**: The login was interactive using the keyboard or software like VNC or `PSexec -U-`
-* **3 \(network\)**: Connection to a shared folder
-* **4 \(Batch\)**: Process executed
-* **5 \(service\)**: Service started by the Service Control Manager
-* **7**: Screen unblocked using password
-* **8 \(network cleartext\)**: User authenticated sendin clear text passwords. This event use to come from the IIS
-* **9 \(new credentials\)**: It's generated when the command `RunAs` is used or the user access to a network service with different credentials.
-* **10 \(remote interactive\)**: Authentication via Terminal Services or RDP
-* **11 \(cache interactive\)**: Access using the last cached credentials because it wasn't possible to contact the domain controller
+* **2 (interactive)**: The login was interactive using the keyboard or software like VNC or `PSexec -U-`
+* **3 (network)**: Connection to a shared folder
+* **4 (Batch)**: Process executed
+* **5 (service)**: Service started by the Service Control Manager
+* **6 (proxy):** Proxy Login
+* **7 (Unlock)**: Screen unblocked using password
+* **8 (network cleartext)**: User authenticated sendin clear text passwords. This event use to come from the IIS
+* **9 (new credentials)**: It's generated when the command `RunAs` is used or the user access to a network service with different credentials.
+* **10 (remote interactive)**: Authentication via Terminal Services or RDP
+* **11 (cache interactive)**: Access using the last cached credentials because it wasn't possible to contact the domain controller
+* **12 (cache remote interactive)**: Login remotely with cached credentials (a combination of 10 and 11).
+* **13 (cached unlock)**: Unlock a locked machine with cached credentials.
+
+In this post you can find how to mimic all these types of login and in which of them you will be able to dump credentials from memory: [https://www.alteredsecurity.com/post/fantastic-windows-logon-types-and-where-to-find-credentials-in-them](https://www.alteredsecurity.com/post/fantastic-windows-logon-types-and-where-to-find-credentials-in-them)
 
 The Status and sub status information of the event s can indicate more details about the causes of the event. For example take a look to the following Status and Sub Status Codes of the Event ID 4625:
 
-![](../../../.gitbook/assets/image%20%28455%29.png)
+![](<../../../.gitbook/assets/image (455).png>)
 
 ### Recovering Windows Events
 
@@ -456,7 +493,7 @@ A brute-force attack can be easily identifiable because **several EventIDs 4625 
 
 ### Time Change
 
-This is awful for the forensics team as all the timestamps will be modified.  
+This is awful for the forensics team as all the timestamps will be modified.\
 This event is recorded by the EventID 4616 inside the Security Event log.
 
 ### USB devices
@@ -464,7 +501,7 @@ This event is recorded by the EventID 4616 inside the Security Event log.
 The following System EventIDs are useful:
 
 * 20001 / 20003 / 10000: First time it was used
-* 10100: Driver update 
+* 10100: Driver update
 
 The EventID 112 from DeviceSetupManager contains the timestamp of each USB device inserted.
 
@@ -476,3 +513,18 @@ The ID 6005 of the "Event Log" service indicates the PC was turned On. The ID 60
 
 The Security EventID 1102 indicates the logs were deleted.
 
+<details>
+
+<summary><strong>Support HackTricks and get benefits!</strong></summary>
+
+Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+
+Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+
+Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+
+**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+
+**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+
+</details>
